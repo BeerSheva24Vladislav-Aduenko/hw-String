@@ -1,15 +1,23 @@
 package telran.strings;
 
 public class Strings {
-    public static String firstName() {
-        //regex for strings starting with capital letter and rest as lowercase letters
-        //minimal length is 5 letters
-        return "[A-Z][a-z]{4,}";
-    }
+
+    public static String[] keywords =  {
+        "abstract", "continue", "for", "new", "switch",
+        "assert", "default", "goto", "package", "synchronized",
+        "boolean", "do", "if", "private", "this",
+        "break", "double", "implements", "protected", "throw",
+        "byte", "else", "import", "public", "throws",
+        "case", "enum", "instanceof", "return", "transient",
+        "catch", "extends", "int", "short", "try",
+        "char", "final", "interface", "static", "void",
+        "class", "finally", "long", "strictfp", "volatile",
+        "const", "float", "native", "super", "while"
+    };
+    public static final String JAVA_VARIABLE_PATTERN = 
+        "^(?!(%s)$)(?!_$)[A-Za-z$_][0-9A-Za-z$_]*$";
+
     public static String javaVariable() {
-        //TODO
-        //regular expression for testing syntax of Java veriable names
-        //only ACII symbols are allowed
-        return "";
+        return String.format(JAVA_VARIABLE_PATTERN, String.join("|", keywords));
     }
 }
