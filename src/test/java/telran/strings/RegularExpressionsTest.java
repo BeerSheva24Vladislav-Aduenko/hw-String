@@ -1,6 +1,7 @@
 package telran.strings;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static telran.strings.Strings.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -99,5 +100,37 @@ public class RegularExpressionsTest {
         String expected = "abs lmn";
         assertEquals(expected, Strings.stringWithJavaNames(names));
     }
-    
+
+    @Test
+    void isArithmeticExpressionTrueTest() {
+        String exprTrue1 = "1+2*3";
+        String exprTrue2 = "2*3";
+        String exprTrue3 = "2*(2-1)*3";
+        String exprTrue4 = "5*(3+(2/2))";
+        String exprTrue5 = "55*(313+(233/24)/2)";
+
+        String exprFalse1 = "1+2*3++";
+        String exprFalse2 = "2*(2--1)*3)";
+        String exprFalse3 = "number";
+        String exprFalse4 = "2*3**(2-1)*3)";
+        String exprFalse5 = "2*3*()";
+        String exprFalse6 = "2+3#";
+        String exprFalse7 = "2+3+number=5";
+
+
+        assertTrue(isArithmeticExpression(exprTrue1));
+        assertTrue(isArithmeticExpression(exprTrue2));
+        assertTrue(isArithmeticExpression(exprTrue3));
+        assertTrue(isArithmeticExpression(exprTrue4));
+        assertTrue(isArithmeticExpression(exprTrue5));
+
+        assertFalse(isArithmeticExpression(exprFalse1));
+        assertFalse(isArithmeticExpression(exprFalse2));
+        assertFalse(isArithmeticExpression(exprFalse3));
+        assertFalse(isArithmeticExpression(exprFalse4));
+        assertFalse(isArithmeticExpression(exprFalse5));
+        assertFalse(isArithmeticExpression(exprFalse6));
+        assertFalse(isArithmeticExpression(exprFalse7));
+
+    }   
 }
