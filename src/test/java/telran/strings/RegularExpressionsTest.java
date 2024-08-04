@@ -133,4 +133,23 @@ public class RegularExpressionsTest {
         assertFalse(isArithmeticExpression(exprFalse7));
 
     }   
+
+    @Test
+    void isArithmeticExpressionTrueTest2() {
+        assertTrue(Strings.isArithmeticExpression("((a + b) /2.5) + x"));
+        assertTrue(Strings.isArithmeticExpression("a + b/2.5+ x"));
+        assertTrue(Strings.isArithmeticExpression("(a + b)/2.5+ (x)"));
+        assertTrue(Strings.isArithmeticExpression("(a + b)/2.5+ 120/0 * 27"));
+        assertTrue(Strings.isArithmeticExpression("(((a + b)/2.5)+ x)"));
+    }
+    @Test
+    void isArithmeticExpressionFalseTest() {
+        assertFalse(Strings.isArithmeticExpression("(((a + b) /2.5) + x"));
+        assertFalse(Strings.isArithmeticExpression("a + b/2.5+ _"));
+        assertFalse(Strings.isArithmeticExpression("(a + b))/2.5+ (x)"));
+        assertFalse(Strings.isArithmeticExpression("(a + b)#2.5+ 120/0 * 27"));
+        assertFalse(Strings.isArithmeticExpression("(((a + b)/2 5)+ x)"));
+        assertFalse(Strings.isArithmeticExpression("(((a (+) b)/25)+ x)"));
+        assertFalse(Strings.isArithmeticExpression("(((a + b)/25)+ int)"));
+    }
 }
